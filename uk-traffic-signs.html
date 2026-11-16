@@ -36,6 +36,24 @@
   .pillnav a{color:#C7D3E8;text-decoration:none;font-size:14px;font-weight:600;padding:7px 14px;border-radius:999px}
   .pillnav a:hover{color:#fff}
   .pillnav a.active{background:var(--blue);color:#fff}
+.pillnav .navgroup{position:relative}
+.pillnav .navtoggle{font:inherit;color:#C7D3E8;background:none;border:0;cursor:pointer;font-size:14px;font-weight:600;padding:7px 14px;border-radius:999px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.pillnav .navtoggle:hover{color:#fff}
+.pillnav .navtoggle.active{background:var(--blue);color:#fff}
+.pillnav .navcaret{font-size:10px;line-height:1;transition:transform .18s ease}
+.pillnav .navgroup.open .navcaret,.pillnav .navgroup:focus-within .navcaret{transform:rotate(180deg)}
+@media(hover:hover) and (pointer:fine){.pillnav .navgroup:hover .navcaret{transform:rotate(180deg)}}
+.pillnav .dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:240px;background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 18px 40px rgba(10,20,40,.28);padding:8px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .18s ease,transform .18s ease,visibility .18s;z-index:80;text-align:left}
+.pillnav .dropdown::before{content:"";position:absolute;top:-10px;left:0;right:0;height:10px}
+.pillnav .navgroup.open .dropdown,.pillnav .navgroup:focus-within .dropdown{opacity:1;visibility:visible;transform:none}
+@media(hover:hover) and (pointer:fine){.pillnav .navgroup:hover .dropdown{opacity:1;visibility:visible;transform:none}}
+.pillnav .drop-stats{font-size:12px;font-weight:700;color:var(--blue);background:#EAF1FE;border-radius:10px;padding:7px 10px;margin:2px 2px 6px;white-space:nowrap}
+.pillnav .drop-region{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);padding:4px 10px 2px}
+.pillnav .dropdown a{display:block;color:var(--dark);font-size:14px;font-weight:600;padding:8px 10px;border-radius:10px}
+.pillnav .dropdown a:hover{background:#F1F5FB;color:var(--dark)}
+.pillnav .dropdown a.active{background:#EAF1FE;color:var(--blue)}
+.pillnav .navgroup.drop-right .dropdown{left:auto;right:0}
+@media(max-width:920px){.pillnav .dropdown{max-width:calc(100vw - 28px)}.pillnav .drop-stats{white-space:normal}}
   .header-cta{background:var(--blue);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:10px 18px;border-radius:999px;white-space:nowrap}
   .header-cta:hover{background:var(--blue-dark)}
   @media(max-width:920px){.pillnav{order:3;margin-left:0}.header-cta{margin-left:auto}}
@@ -196,11 +214,37 @@
     </a>
     <nav class="pillnav">
       <a href="index.html">Home</a>
-      <a href="punjab-driving-licence-test.html">Punjab Test</a>
-      <a href="punjab-practice-test.html">Practice</a>
-      <a href="punjab-traffic-signs.html">Signs</a>
-      <a href="punjab-licence-fees-guide.html">Fees &amp; Guide</a>
-      <a href="uk-driving-theory-test.html" class="active">UK Theory Test</a>
+      <div class="navgroup">
+        <button type="button" class="navtoggle" aria-haspopup="true" aria-expanded="false">Pakistan <span class="navcaret" aria-hidden="true">▾</span></button>
+        <div class="dropdown">
+          <div class="drop-stats">480 Questions · 102 Signs · English / Urdu</div>
+          <a href="punjab-driving-licence-test.html">Punjab Test</a>
+          <a href="punjab-practice-test.html">Practice Test</a>
+          <a href="punjab-traffic-signs.html">Traffic Signs</a>
+          <a href="punjab-licence-fees-guide.html">Fees &amp; Guide</a>
+        </div>
+      </div>
+      <div class="navgroup">
+        <button type="button" class="navtoggle active" aria-haspopup="true" aria-expanded="false">UK <span class="navcaret" aria-hidden="true">▾</span></button>
+        <div class="dropdown">
+          <div class="drop-stats">730 Questions · 167 Signs · 6 Languages</div>
+          <a href="uk-driving-theory-test.html">UK Theory Test</a>
+          <a href="uk-practice-test.html">Practice Test</a>
+          <a href="uk-traffic-signs.html" class="active">Traffic Signs</a>
+          <a href="uk-licence-fees-guide.html">Fees &amp; Guide</a>
+        </div>
+      </div>
+      <div class="navgroup drop-right">
+        <button type="button" class="navtoggle" aria-haspopup="true" aria-expanded="false">USA <span class="navcaret" aria-hidden="true">▾</span></button>
+        <div class="dropdown">
+          <div class="drop-stats">420 Questions · 174 Signs · 5 Languages</div>
+          <div class="drop-region">California</div>
+          <a href="california-driving-test.html">California Test</a>
+          <a href="california-practice-test.html">Practice Test</a>
+          <a href="california-traffic-signs.html">Traffic Signs</a>
+          <a href="california-license-fees-guide.html">License Fees Guide</a>
+        </div>
+      </div>
     </nav>
     <a class="header-cta" href="uk-driving-theory-test.html">UK Pack</a>
   </div>
@@ -438,5 +482,8 @@
     </div>
   </div>
 </footer>
+<script>
+(function(){var groups=document.querySelectorAll('.pillnav .navgroup');if(!groups.length)return;function closeAll(except){groups.forEach(function(g){if(g!==except){g.classList.remove('open');var b=g.querySelector('.navtoggle');if(b)b.setAttribute('aria-expanded','false');}});}groups.forEach(function(g){var btn=g.querySelector('.navtoggle');if(!btn)return;btn.addEventListener('click',function(e){e.stopPropagation();var willOpen=!g.classList.contains('open');closeAll(g);g.classList.toggle('open',willOpen);btn.setAttribute('aria-expanded',willOpen?'true':'false');});g.addEventListener('click',function(e){e.stopPropagation();});});document.addEventListener('click',function(){closeAll(null);});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll(null);});})();
+</script>
 </body>
 </html>
