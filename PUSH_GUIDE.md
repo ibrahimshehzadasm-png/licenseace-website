@@ -1,69 +1,62 @@
-# LicenseAce Website v9 — Texas Web Set + USA Nav Update (17 Nov 2026)
+# LicenseAce Website v10 — Jameel Noori Nastaleeq for Urdu on the Web (17 Nov 2026)
 
-**Push THIS v9 set — it supersedes v8 completely** (v8 is live; v9 contains
-everything in v8 plus the Texas set and the nav/footer updates below).
+**Push THIS v10 set — it supersedes v9 completely** (v9 is live; v10 contains
+everything in v9 plus the Urdu webfont change below — no content, page or
+sitemap changes).
 
-## What v9 adds
+**User decision (17 Nov 2026):** Urdu on the **website** renders in
+**Jameel Noori Nastaleeq**; the **app keeps Noto Nastaliq Urdu** (unchanged).
 
-1. **Four new Texas pages** (built from the verified Texas pack — DPS /
-   Driver Handbook DL-7, Rev. Jan 2026):
-   - `texas-driving-test.html` — hub: honest test-format box (30 questions,
-     15 signs + 15 laws, 70% pass standard published in DL-7; DPS does not
-     print the question count on its public pages), 6 FAQs with matching
-     FAQ schema.
-   - `texas-practice-test.html` — working 40-question quiz from the real
-     Texas bank (14 sign questions with pictures), translations in Spanish,
-     Urdu, Bengali and Arabic.
-   - `texas-traffic-signs.html` — all **119** Texas signs with pictures,
-     names and meanings in 5 languages (`assets/signs_tx/`, 119 PNGs).
-   - `texas-license-fees-guide.html` — 6-step licence guide, the official
-     10-row DPS fee table (Class C $33), teen GDL rules, adult driver
-     education, Impact Texas Drivers, driving test, renewal, quick
-     questions and the not-affiliated note.
-2. **USA nav dropdown updated on all 20 pages**: stats line now reads
-   *840 Questions · 293 Signs · 5 Languages* (California + Texas combined),
-   and a **Texas** region block with its 4 links sits under California's.
-3. **Homepage**: a **Texas Pack section** (mirroring the California Pack
-   section) after the California section, and the meta description now
-   ends "…Punjab, UK, California & Texas."
-4. **Roadmap lines updated** (homepage roadmap + every page's footer):
-   "🇺🇸 Texas, USA — coming soon" and "🇺🇸 New York & Florida, USA — later"
-   replace the old "🇦🇪 UAE & more — later" line.
-5. **Sitemap: 20 URLs** (4 Texas pages added, lastmod 2026-11-17).
+## What v10 changes
 
-Verified before delivery: AdSense script exactly once per page, all
-internal links resolve, quiz data complete in 5 languages, gallery 119/119
-images present, tag balance clean. **Article 2 (Hazard Perception) is
-still NOT in this set** — it publishes in its own push, as planned.
+1. **New self-hosted webfont**: `assets/fonts/jameel-noori-nastaleeq.woff2`
+   (5.5 MB — the same font file that was inspected and compared on
+   17 Nov). Every page declares it with `@font-face` + `font-display: swap`,
+   so Urdu first appears in the fallback and swaps to Jameel when loaded.
+   Browsers only download it on pages where Urdu text is actually shown,
+   and it is cached after the first download.
+2. **Urdu font stack updated on all 20 pages**: Urdu text (quiz questions
+   and options, sign names/meanings, Urdu lines) now uses
+   `'Jameel Noori Nastaleeq','Noto Nastaliq Urdu',serif` — Jameel first,
+   Noto as fallback. Until now the site named Noto but never loaded any
+   Urdu webfont, so Urdu fell back to whatever the visitor's device had;
+   now every visitor gets the same newspaper-style Nastaleeq.
+3. **Size compensation**: Jameel renders about 30% smaller than Noto at the
+   same size, so Urdu block text is set to `1.22em` and quiz-option Urdu to
+   `18px` (was 15px). Line-heights unchanged (2.1 / 2).
+4. Nothing else changes: same 20 pages, same sitemap (20 URLs), AdSense
+   script still exactly once per page (verified). **Article 2 (Hazard
+   Perception) is still NOT in this set** — it publishes in its own push.
 
 ## Push steps
 
-1. Copy the **contents** of this `licenseace_website_v9` folder into your
+1. Copy the **contents** of this `licenseace_website_v10` folder into your
    `licenseace-website` repo folder (overwrite everything it asks about).
+   Make sure the new `assets\fonts` folder copies across with the
+   `jameel-noori-nastaleeq.woff2` file inside it.
 2. ⚠️ Run the git commands **inside the `licenseace-website` folder**
    (not the app project root — that was the 16 Nov lesson):
    ```
    cd licenseace-website
    git add -A
-   git commit -m "Texas web set + USA nav stats 840/293 + roadmap update"
+   git commit -m "Urdu webfont: Jameel Noori Nastaleeq (web only)"
    git push
    ```
 3. Wait a minute for GitHub Pages to rebuild.
 
 ## Post-push live checks
 
-- Open the four Texas pages:
-  - https://licenseace.com/texas-driving-test.html
-  - https://licenseace.com/texas-practice-test.html (answer 2–3 questions;
-    a sign question must show its sign picture)
-  - https://licenseace.com/texas-traffic-signs.html (switch the language
-    select to Spanish — names/meanings must change)
-  - https://licenseace.com/texas-license-fees-guide.html
-- Check the nav USA dropdown on any page: stats line *840 · 293 · 5*,
-  California links, then Texas links.
-- Homepage: the 🇺🇸 Texas Pack section appears after the California Pack
-  section; the footer roadmap shows Texas / New York & Florida (no UAE).
-- Open https://licenseace.com/sitemap.xml — it must show **20** `<url>`
-  entries.
-- In Search Console, resubmit the sitemap with the **full URL**
-  `https://licenseace.com/sitemap.xml`.
+- Open https://licenseace.com/punjab-practice-test.html — start the quiz;
+  the Urdu question line and the Urdu under each option must appear in the
+  slim newspaper-style Nastaleeq (clearly different from the old round
+  Noto look). The first Urdu page on a fresh browser may take a few
+  seconds to swap fonts while the 5.5 MB file downloads; after that it is
+  cached and instant.
+- Open https://licenseace.com/texas-traffic-signs.html (or the California
+  one) — set the language select to **Urdu**: sign names and meanings must
+  switch to Urdu in the same Jameel style, right-aligned.
+- Open https://licenseace.com/uk-traffic-signs.html — Urdu sign names in
+  Jameel.
+- Direct font check: https://licenseace.com/assets/fonts/jameel-noori-nastaleeq.woff2
+  must download (not a 404 page).
+- No sitemap resubmission is needed for this push (no URL changes).
