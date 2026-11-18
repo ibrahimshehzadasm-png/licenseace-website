@@ -51,6 +51,13 @@
 @media(hover:hover) and (pointer:fine){.pillnav .navgroup:hover .dropdown{opacity:1;visibility:visible;transform:none}}
 .pillnav .drop-stats{font-size:12px;font-weight:700;color:var(--blue);background:#EAF1FE;border-radius:10px;padding:7px 10px;margin:2px 2px 6px;white-space:nowrap}
 .pillnav .drop-region{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);padding:4px 10px 2px}
+.pillnav .drop-acc{margin:0}
+.pillnav button.drop-region{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;background:none;border:0;cursor:pointer;font:inherit;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);padding:8px 10px 6px;text-align:left}
+.pillnav button.drop-region:hover{color:var(--dark)}
+.pillnav .drop-caret{font-size:10px;line-height:1;transition:transform .18s ease}
+.pillnav .drop-acc.open .drop-caret{transform:rotate(180deg)}
+.pillnav .drop-sub{display:none;padding-left:12px}
+.pillnav .drop-acc.open .drop-sub{display:block}
 .pillnav .dropdown a{display:block;color:var(--dark);font-size:14px;font-weight:600;padding:8px 10px;border-radius:10px}
 .pillnav .dropdown a:hover{background:#F1F5FB;color:var(--dark)}
 .pillnav .dropdown a.active{background:#EAF1FE;color:var(--blue)}
@@ -220,10 +227,15 @@
         <button type="button" class="navtoggle active" aria-haspopup="true" aria-expanded="false">Pakistan <span class="navcaret" aria-hidden="true">▾</span></button>
         <div class="dropdown">
           <div class="drop-stats">480 Questions · 102 Signs · English / Urdu</div>
+          <div class="drop-acc">
+            <button type="button" class="drop-region drop-toggle" aria-expanded="false">Punjab <span class="drop-caret" aria-hidden="true">▾</span></button>
+            <div class="drop-sub">
           <a href="punjab-driving-licence-test.html">Punjab Test</a>
           <a href="punjab-practice-test.html">Practice Test</a>
           <a href="punjab-traffic-signs.html" class="active">Traffic Signs</a>
           <a href="punjab-licence-fees-guide.html">Fees &amp; Guide</a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="navgroup">
@@ -240,26 +252,42 @@
         <button type="button" class="navtoggle" aria-haspopup="true" aria-expanded="false">USA <span class="navcaret" aria-hidden="true">▾</span></button>
         <div class="dropdown">
           <div class="drop-stats">1620 Questions · 518 Signs · 5 Languages</div>
-          <div class="drop-region">California</div>
+          <div class="drop-acc">
+            <button type="button" class="drop-region drop-toggle" aria-expanded="false">California <span class="drop-caret" aria-hidden="true">▾</span></button>
+            <div class="drop-sub">
           <a href="california-driving-test.html">California Test</a>
           <a href="california-practice-test.html">Practice Test</a>
           <a href="california-traffic-signs.html">Traffic Signs</a>
           <a href="california-license-fees-guide.html">License Fees Guide</a>
-          <div class="drop-region">Texas</div>
+            </div>
+          </div>
+          <div class="drop-acc">
+            <button type="button" class="drop-region drop-toggle" aria-expanded="false">Texas <span class="drop-caret" aria-hidden="true">▾</span></button>
+            <div class="drop-sub">
           <a href="texas-driving-test.html">Texas Test</a>
           <a href="texas-practice-test.html">Practice Test</a>
           <a href="texas-traffic-signs.html">Traffic Signs</a>
           <a href="texas-license-fees-guide.html">License Fees Guide</a>
-          <div class="drop-region">New York</div>
+            </div>
+          </div>
+          <div class="drop-acc">
+            <button type="button" class="drop-region drop-toggle" aria-expanded="false">New York <span class="drop-caret" aria-hidden="true">▾</span></button>
+            <div class="drop-sub">
           <a href="new-york-driving-test.html">New York Test</a>
           <a href="new-york-practice-test.html">Practice Test</a>
           <a href="new-york-traffic-signs.html">Traffic Signs</a>
           <a href="new-york-license-fees-guide.html">License Fees Guide</a>
-          <div class="drop-region">Florida</div>
+            </div>
+          </div>
+          <div class="drop-acc">
+            <button type="button" class="drop-region drop-toggle" aria-expanded="false">Florida <span class="drop-caret" aria-hidden="true">▾</span></button>
+            <div class="drop-sub">
           <a href="florida-driving-test.html">Florida Test</a>
           <a href="florida-practice-test.html">Practice Test</a>
           <a href="florida-traffic-signs.html">Traffic Signs</a>
           <a href="florida-license-fees-guide.html">License Fees Guide</a>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -432,6 +460,9 @@
 </footer>
 <script>
 (function(){var groups=document.querySelectorAll('.pillnav .navgroup');if(!groups.length)return;function closeAll(except){groups.forEach(function(g){if(g!==except){g.classList.remove('open');var b=g.querySelector('.navtoggle');if(b)b.setAttribute('aria-expanded','false');}});}groups.forEach(function(g){var btn=g.querySelector('.navtoggle');if(!btn)return;btn.addEventListener('click',function(e){e.stopPropagation();var willOpen=!g.classList.contains('open');closeAll(g);g.classList.toggle('open',willOpen);btn.setAttribute('aria-expanded',willOpen?'true':'false');});g.addEventListener('click',function(e){e.stopPropagation();});});document.addEventListener('click',function(){closeAll(null);});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll(null);});})();
+</script>
+<script>
+(function(){var accs=document.querySelectorAll('.pillnav .drop-acc');if(!accs.length)return;accs.forEach(function(acc){var btn=acc.querySelector('.drop-toggle');if(!btn)return;btn.addEventListener('click',function(e){e.stopPropagation();var willOpen=!acc.classList.contains('open');var dd=acc.closest('.dropdown');if(dd){dd.querySelectorAll('.drop-acc.open').forEach(function(o){if(o!==acc){o.classList.remove('open');var b=o.querySelector('.drop-toggle');if(b){b.setAttribute('aria-expanded','false');}}});}acc.classList.toggle('open',willOpen);btn.setAttribute('aria-expanded',willOpen?'true':'false');});});})();
 </script>
 </body>
 </html>
