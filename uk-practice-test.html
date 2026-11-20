@@ -274,17 +274,6 @@
         </div>
       </div>
       <div class="navgroup">
-        <button type="button" class="navtoggle" aria-haspopup="true" aria-expanded="false">Qatar <span class="navcaret" aria-hidden="true">▾</span></button>
-        <div class="dropdown">
-          <div class="drop-stats">420 Questions · 150 Signs · 6 Languages</div>
-          <a href="qatar-driving-test.html">Qatar Test</a>
-          <a href="qatar-practice-test.html">Practice Test</a>
-          <a href="qatar-traffic-signs.html">Traffic Signs</a>
-          <a href="qatar-licence-fees-guide.html">Fees &amp; Guide</a>
-        </div>
-      </div>
-      
-<div class="navgroup">
         <button type="button" class="navtoggle" aria-haspopup="true" aria-expanded="false">Australia <span class="navcaret" aria-hidden="true">▾</span></button>
         <div class="dropdown">
           <div class="drop-acc">
@@ -305,6 +294,16 @@
           <a href="australia/victoria/practice-test.html">Practice Test</a>
           <a href="australia/victoria/signs.html">Traffic Signs</a>
           <a href="australia/victoria/fees-and-guide.html">Fees &amp; Guide</a>
+            </div>
+          </div>
+          <div class="drop-acc">
+            <button type="button" class="drop-region drop-toggle" aria-expanded="false">Queensland <span class="drop-caret" aria-hidden="true">▾</span></button>
+            <div class="drop-sub">
+          <div class="drop-stats">420 Questions · 127 Signs · 4 Languages</div>
+          <a href="australia/queensland/index.html">Queensland Test</a>
+          <a href="australia/queensland/practice-test.html">Practice Test</a>
+          <a href="australia/queensland/signs.html">Traffic Signs</a>
+          <a href="australia/queensland/fees-and-guide.html">Fees &amp; Guide</a>
             </div>
           </div>
         </div>
@@ -381,12 +380,12 @@
     <div class="langbar">
       <label for="langsel">Translation language:</label>
       <select class="langsel" id="langsel">
-        <option value="ur" selected>Urdu</option>
+        <option value="ur">Urdu</option>
         <option value="bn">Bengali</option>
         <option value="pl">Polish</option>
         <option value="ar">Arabic</option>
         <option value="ro">Romanian</option>
-        <option value="none">English only</option>
+        <option value="none" selected>English only</option>
       </select>
     </div>
     <div class="quizcard">
@@ -425,7 +424,7 @@ const LANGMAP = {
   ro: {q: 'qr', o: 'orr', e: 'er', rtl: false, urdu: false},
   none: null
 };
-let lang = 'ur';
+let lang = 'none';
 let idx = 0, score = 0, answered = false, lastChoice = -1;
 const total = QUESTIONS.length;
 const quizBox = document.getElementById('quiz');
